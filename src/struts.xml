@@ -9,5 +9,11 @@
 	<result>/index.jsp</result>
 	<result name="input">/login.jsp</result>
 	</action>
+	<action name="Speciality" class="com.csai.action.SpecialityAction">
+		<result>/basicdata/specialityadmin.jsp</result>
+	</action>
+	<action name="Matri" class="com.csai.action.MatriAction">
+		<result>/basicdata/matri.jsp</result>
+	</action>
 </package>
 </struts>
