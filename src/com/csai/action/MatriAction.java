@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
-
-import com.csai.POJO.Speciality;
 import com.csai.POJO.Student;
 import com.csai.db.DBConn;
 import com.opensymphony.xwork2.ActionContext;
@@ -24,8 +22,14 @@ public class MatriAction extends ActionSupport{
 	public int specialityid;
 	public String matrino;
 	public String studentname;
-	public int currentpage=1;
 	public long studentid;
+	public int currentpage=1;
+	public int getCurrentpage() {
+		return currentpage;
+	}
+	public void setCurrentpage(int currentpage) {
+		this.currentpage = currentpage;
+	}
 	public String getAction() {
 		return action;
 	}
@@ -49,12 +53,6 @@ public class MatriAction extends ActionSupport{
 	}
 	public void setStudentname(String studentname) {
 		this.studentname = studentname;
-	}
-	public int getCurrentpage() {
-		return currentpage;
-	}
-	public void setCurrentpage(int currentpage) {
-		this.currentpage = currentpage;
 	}
 	public long getStudentid() {
 		return studentid;
@@ -119,6 +117,9 @@ public class MatriAction extends ActionSupport{
 				if(pagecount>1&&currentpage>1){
 					String sqladd=" order by StudentId desc limit "+(currentpage-1)*pagesize+","+pagesize;
 					sql+=sqladd;
+				}else {
+					String sqladd=" order by StudentId desc limit 0,"+pagesize;
+					sql+=sqladd;
 				}
 				Statement state=conn.createStatement();
 				rsselct=state.executeQuery(sql);
@@ -145,7 +146,7 @@ public class MatriAction extends ActionSupport{
 					preSqlselect.setInt(1, specialityid);
 					preSqlselect.setString(2, "%"+studentname+"%");
 				}else {
-					sql=sql+"order by StudentId desc";
+					sql=sql+" order by StudentId desc limit "+(currentpage-1)*pagesize+","+pagesize;
 					preSqlselect=conn.prepareStatement(sql);
 					preSqlselect.setInt(1, specialityid);
 					preSqlselect.setString(2, "%"+studentname+"%");
@@ -167,20 +168,7 @@ public class MatriAction extends ActionSupport{
 		Map<String, Serializable> request=(Map<String, Serializable>)ActionContext.getContext().get("request");
 		request.remove("stuArray");
 		request.put("stuArray", stuArray);
-		
-		String sql="select * from Speciality";
-		Statement state=conn.createStatement();
-		ResultSet rSet=state.executeQuery(sql);
-		ArrayList<Speciality> specialityArray=new ArrayList<Speciality>();
-		while(rSet.next()){
-			Speciality speciality=new Speciality();
-			speciality.setSpecialityId(rSet.getInt("SpecialityId"));
-			speciality.setSpecialityName(rSet.getString("SpecialityName"));
-			specialityArray.add(speciality);
-		}
-		
-		request.remove("specialityArray");
-		request.put("specialityArray", specialityArray);
+
 		//将数据放入request
 		request.remove("pagesize");
 		request.remove("pagecount");

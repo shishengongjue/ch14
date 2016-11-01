@@ -1,10 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="com.csai.db.StudentUtil"%>
+<%@page import="com.csai.POJO.Speciality"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=GBK"
+    pageEncoding="GBK"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=GBK">
 <title>Insert title here</title>
 </head>
 <body>
@@ -13,20 +16,25 @@
 	bordercolor="#C0C0C0" width="600">
 <tr>
 	<td width="100%" bgcolor="#C0C0C0" align="center">	
-	<font color="#0000FF">å½•å…¥å­¦ç”Ÿåå†Œ</font>
+	<font color="#0000FF">Â¼ÈëÑ§ÉúÃû²á</font>
 </td>
 </tr>
 <tr>
 	<td width="100%" align="left">
-	è¯·è¾“å…¥å­¦ç”Ÿå§“å:
-	<s:textfield name="studentname"/>
-	<%-- è¯·é€‰å–å½•å–ä¸“ä¸š:
-	<s:select name="specialityid" listKey="SpecialityId" listValue="SpecialityName"
-		list="#request.specialityArray" headerKey="" headerValue="===è¯·é€‰æ‹©===">
-	</s:select><br> --%>
-	è¯·è¾“å…¥å½•å–é€šçŸ¥ä¹¦å·:<s:textfield name="matrino"/>
+	ÇëÊäÈëÑ§ÉúĞÕÃû:
+	<s:textfield name="studentname"/><br>
+	ÇëÑ¡È¡Â¼È¡×¨Òµ:
+	<select name="specialityid">
+		<option value="">===ÇëÑ¡Ôñ===</option>
+		<%
+		ArrayList<Speciality> spe =StudentUtil.specialities();
+		for(int i=0;i<spe.size();i++) {%>
+		<option value="<%=spe.get(i).SpecialityId%>"><%=spe.get(i).SpecialityName %></option>
+		<%} %>
+	</select><br>
+	ÇëÊäÈëÂ¼È¡Í¨ÖªÊéºÅ:<s:textfield name="matrino"/>
 	<s:hidden name="action" value="add" />
-	<s:submit value="æäº¤" />
+	<s:submit value="Ìá½»" />
 	</td>
 </tr>
 </table>
@@ -36,28 +44,33 @@
 	bordercolor="#C0C0C0" width="600">
 <tr>
 	<td width="100%" bgcolor="#C0C0C0" align="center" colspan="5">	
-	<font color="#0000FF">æŸ¥è¯¢å·²å½•å…¥çš„å­¦ç”Ÿåå†Œ</font>
+	<font color="#0000FF">²éÑ¯ÒÑÂ¼ÈëµÄÑ§ÉúÃû²á</font>
 </td>
 </tr>
 <tr>
 	<td width="100%" align="left" colspan="5">
-	è¯·è¾“å…¥å­¦ç”Ÿå§“å:
-	<s:textfield name="studentname"/>
-	<%-- è¯·é€‰å–å½•å–ä¸“ä¸š:
-	<s:select name="specialityid" listKey="SpecialityId" listValue="SpecialityName"
-		list="#request.specialityArray" headerKey="" headerValue="===è¯·é€‰æ‹©===">
-	</s:select><br> --%>
-	è¯·è¾“å…¥å½•å–é€šçŸ¥ä¹¦å·:<s:textfield name="matrino"/>
+	ÇëÊäÈëÑ§ÉúĞÕÃû:
+	<s:textfield name="studentname"/><br>
+	ÇëÑ¡È¡Â¼È¡×¨Òµ:
+	<select name="specialityid">
+		<option value="">===ÇëÑ¡Ôñ===</option>
+		<%
+		ArrayList<Speciality> spe =StudentUtil.specialities();
+		for(int i=0;i<spe.size();i++) {%>
+		<option value="<%=spe.get(i).SpecialityId%>"><%=spe.get(i).SpecialityName %></option>
+		<%} %>
+	</select><br>
+	ÇëÊäÈëÂ¼È¡Í¨ÖªÊéºÅ:<s:textfield name="matrino"/>
 	<s:hidden name="action" value="select" />
-	<s:submit value="æäº¤" />
+	<s:submit value="Ìá½»" />
 	</td>
 </tr>
 <tr bgcolor="#C0C0C0">
-	<td align="center"><font color="#0000FF">åºå·</font></td>
-	<td align="center"><font color="#0000FF">å§“å</font></td>
-	<td align="center"><font color="#0000FF">å½•å–ä¸“ä¸š</font></td>
-	<td align="center"><font color="#0000FF">å½•å–é€šçŸ¥ä¹¦å·</font></td>
-	<td align="center"><font color="#0000FF">åˆ é™¤?</font></td>
+	<td align="center"><font color="#0000FF">ĞòºÅ</font></td>
+	<td align="center"><font color="#0000FF">ĞÕÃû</font></td>
+	<td align="center"><font color="#0000FF">Â¼È¡×¨Òµ</font></td>
+	<td align="center"><font color="#0000FF">Â¼È¡Í¨ÖªÊéºÅ</font></td>
+	<td align="center"><font color="#0000FF">É¾³ı?</font></td>
 </tr>
 <s:iterator value="#request.stuArray" status="status">
 <tr>
@@ -66,7 +79,7 @@
  <td align="center"><s:property value="@com.csai.db.StudentUtil@havaSplitSpec(SpecialityId)"/></td>
  <td align="center"><s:property value="MatriNo"/></td>
  <td align="center">
- 	<a href="Matri.action?action=del&studentid=<s:property value="StudentId"/>">åˆ é™¤</a>
+ 	<a href="Matri.action?action=del&studentid=<s:property value="StudentId"/>">É¾³ı</a>
  </td>
 </tr>
 </s:iterator>
@@ -76,22 +89,25 @@
 	<s:if test="#request.pagecount>1&&#request.currentpage>1">
 		<a href="Matri.action?currentpage=1&action=<s:property value="action"/>
 			&specialityid=<s:property value="SpecialityId" />
-			&studentname=<s:property value="StudentName" />">é¦–é¡µ</a>
+			&studentname=<s:property value="StudentName" />">Ê×Ò³</a>
 		<a href="Matri.action?currentpage=<s:property value="#request.currentpage-1" />
 			&action=<s:property value="action" />
 			&specialityid=<s:property value="SpecialityId" />
-			&studentname=<s:property value="StudentName" />">ä¸Šä¸€é¡µ</a>
+			&studentname=<s:property value="StudentName" />">ÉÏÒ»Ò³</a>
 	</s:if>
-	<s:if test="#request.pagecount>1&&reuqest.currentpage<#request.pagecount">
+	<s:if test="#request.pagecount>1&&#request.currentpage<#request.pagecount">
 		<a href="Matri.action?currentpage=<s:property value="#request.currentpage+1" />
 			&action=<s:property value="action" />
 			&specialityid=<s:property value="SpecialityId" />
-			&studentname=<s:property value="StudentName" />">ä¸‹ä¸€é¡µ</a>
+			&studentname=<s:property value="StudentName" />">ÏÂÒ»Ò³</a>
 		<a href="Matri.action?currentpage=<s:property value="#request.pagecount" />
 			&action=<s:property value="action"/>
 			&specialityid=<s:property value="SpecialityId" />
-			&studentname=<s:property value="StudentName" />">å°¾é¡µ</a>
+			&studentname=<s:property value="StudentName" />">Î²Ò³</a>
 	</s:if>
+	¹²<s:property value="#request.recount"/>Ìõ¼ÇÂ¼,
+	¹²<s:property value="#request.pagecount"/>Ò³,
+	µ±Ç°µÚ<s:property value="#request.currentpage" />Ò³
 </font>
 </td>
 </tr>

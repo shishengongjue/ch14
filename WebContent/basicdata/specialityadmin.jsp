@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=GBK"
+    pageEncoding="GBK"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,15 +13,15 @@
 	bordercolor="#C0C0C0" width="600">
 <tr>
 	<td width="100%" bgcolor="#C0C0C0" align="center">	
-	<font color="#0000FF">录入专业数据</font>
+	<font color="#0000FF">¼��רҵ����</font>
 </td>
 </tr>
 <tr>
 	<td width="100%">
-	请输入专业名称:
+	������רҵ����:
 	<s:textfield name="specialityname" />
 	<s:hidden name="action" value="add" />
-	<s:submit value="提交"/>
+	<s:submit value="�ύ"/>
 	</td>
 </tr>
 </table>
@@ -30,13 +30,13 @@
 	bordercolor="#C0C0C0" width="600">
 <tr>
 	<td width="100%" bgcolor="#C0C0C0" align="center" colspan="3">	
-	<font color="#0000FF">已有专业数据</font>
+	<font color="#0000FF">����רҵ����</font>
 </td>
 </tr>
 <tr>
-	<td width="20%" align="center">序号</td>
-	<td width="60%" align="center">专业名称</td>
-	<td width="20%" align="center">删除?</td>
+	<td width="20%" align="center">���</td>
+	<td width="60%" align="center">רҵ����</td>
+	<td width="20%" align="center">ɾ��?</td>
 </tr>
 <s:iterator value="#request.specialityArray" status="status">
 <tr>
@@ -44,7 +44,7 @@
 	<td width="60%" align="center"><s:property value="SpecialityName" /></td>
 	<td width="20%" align="center">
 		<a href="Speciality.action?action=del&specialityid=<s:property value="SpecialityId"/>">
-		删除?</a>
+		ɾ��?</a>
 	</td>
 </tr>
 </s:iterator>

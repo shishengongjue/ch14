@@ -16,4 +16,5 @@
 		<result>/basicdata/matri.jsp</result>
 	</action>
 </package>
+<constant name="struts.ognl.allowStaticMethodAccess" value="true"></constant>
 </struts>

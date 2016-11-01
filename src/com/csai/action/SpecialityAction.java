@@ -16,12 +16,12 @@ public class SpecialityAction extends ActionSupport{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public String specialityename;
-	public String getSpecialityename() {
-		return specialityename;
+	public String specialityname;
+	public String getSpecialityname() {
+		return specialityname;
 	}
-	public void setSpecialityename(String specialityename) {
-		this.specialityename = specialityename;
+	public void setSpecialityname(String specialityname) {
+		this.specialityname = specialityname;
 	}
 	public int getSpecialityid() {
 		return specialityid;
@@ -41,16 +41,16 @@ public class SpecialityAction extends ActionSupport{
 	public String execute() throws Exception{
 		Connection conn=DBConn.createConn();
 		if("add".equals(action)){
-			if(specialityename!=null&&specialityename.length()!=0)
+			if(specialityname!=null&&specialityname.length()!=0)
 			{
 				String sql="select * from Speciality where SpecialityName=?";
 				PreparedStatement preSqlselect=conn.prepareStatement(sql);
-				preSqlselect.setString(1, specialityename);
+				preSqlselect.setString(1, specialityname);
 				ResultSet rSet=preSqlselect.executeQuery();
 				if(!rSet.next()){
 					sql="insert into Speciality (SpecialityName) values(?)";
 					PreparedStatement preSqlinsert=conn.prepareStatement(sql);
-					preSqlinsert.setString(1, specialityename);
+					preSqlinsert.setString(1, specialityname);
 					preSqlinsert.executeUpdate();
 				}
 			}
@@ -81,4 +81,6 @@ public class SpecialityAction extends ActionSupport{
 		DBConn.closeConn(conn);
 		return SUCCESS;
 	}
+	
+	
 }

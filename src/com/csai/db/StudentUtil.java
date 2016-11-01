@@ -3,6 +3,9 @@ package com.csai.db;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import com.csai.POJO.Speciality;
 
 public class StudentUtil {
 	//返回是否已分专业表述的字符串
@@ -70,5 +73,20 @@ public class StudentUtil {
 			} catch (Exception e) {
 				return null;
 			}
+		}
+		//获取专业信息
+		public static ArrayList<Speciality> specialities() throws Exception{
+			Connection connection =DBConn.createConn();
+			ArrayList<Speciality> spe = new ArrayList<Speciality>();
+			String sql="select * from Speciality";
+			Statement stae = connection.createStatement();
+			ResultSet resultSet = stae.executeQuery(sql);
+			while(resultSet.next()){
+				Speciality spec = new Speciality();
+				spec.setSpecialityId(resultSet.getInt("SpecialityId"));
+				spec.setSpecialityName(resultSet.getString("SpecialityName"));
+				spe.add(spec);
+			}
+			return spe;
 		}
 }
